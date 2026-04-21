@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI Analyzer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-orb bg-orb--one" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb--two" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <main class="app-shell">
+    <header class="hero-panel">
+      <div class="hero-panel__top">
+        <div class="hero-badge">UI Analyzer</div>
+        <div class="hero-status" id="heroStatus">
+          <span class="hero-status__dot"></span>
+          <span>Ready to audit</span>
+        </div>
+      </div>
+
+      <div class="hero-panel__body">
+        <div class="hero-mark" aria-hidden="true">
+          <span class="hero-mark__frame"></span>
+          <span class="hero-mark__node hero-mark__node--a"></span>
+          <span class="hero-mark__node hero-mark__node--b"></span>
+          <span class="hero-mark__node hero-mark__node--c"></span>
+        </div>
+
+        <div class="hero-copy">
+          <p class="eyebrow">Design analysis assistant</p>
+          <h1>Audit the interface, not just the styles</h1>
+          <p class="subtitle">Review visual roles, accessibility, reusable patterns, exports, and page-to-page changes in one focused side panel.</p>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <article class="hero-stat">
+          <span>Insights</span>
+          <strong id="statInsights">--</strong>
+        </article>
+        <article class="hero-stat">
+          <span>Contrast checks</span>
+          <strong id="statContrast">--</strong>
+        </article>
+        <article class="hero-stat">
+          <span>Saved</span>
+          <strong id="statSaved">--</strong>
+        </article>
+      </div>
+    </header>
+
+    <section class="toolbar card">
+      <div class="toolbar__primary">
+        <button id="analyzeButton" class="analyze-button" type="button">
+          <span>Analyze current page</span>
+          <span class="analyze-button__glow" aria-hidden="true"></span>
+        </button>
+        <button id="saveButton" class="ghost-button" type="button" disabled>Save snapshot</button>
+      </div>
+      <div class="toolbar__secondary">
+        <button id="exportJsonButton" class="chip-button" type="button" disabled>Export JSON</button>
+        <button id="copyCssButton" class="chip-button" type="button" disabled>Copy CSS vars</button>
+        <button id="highlightButton" class="chip-button" type="button" disabled>Highlight issues</button>
+      </div>
+    </section>
+
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+    <section id="statusCard" class="status-card empty-state">
+      <div class="empty-illustration" aria-hidden="true">
+        <div class="mini-window mini-window--large"></div>
+        <div class="mini-window mini-window--small"></div>
+        <div class="scan-ring"></div>
+      </div>
+      <h2>Run an audit to build a lightweight design review</h2>
+      <p>You'll get smart insights, contrast checks, exports, comparison with recent pages, and a visual design system viewer.</p>
+    </section>
+
+    <section id="loader" class="status-card skeleton hidden" aria-hidden="true">
+      <div class="skeleton__hero"></div>
+      <div class="skeleton__grid">
+        <div class="skeleton__tile"></div>
+        <div class="skeleton__tile"></div>
+        <div class="skeleton__tile"></div>
+        <div class="skeleton__tile"></div>
+      </div>
+      <div class="skeleton__stack">
+        <div class="skeleton__line skeleton__line--title"></div>
+        <div class="skeleton__line"></div>
+        <div class="skeleton__line skeleton__line--short"></div>
+      </div>
+    </section>
+
+    <div id="results" class="results hidden" aria-live="polite"></div>
+  </main>
+
+  <template id="sectionTemplate">
+    <section class="card section-card reveal">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker"></p>
+          <h2></h2>
+        </div>
+        <p class="section-description"></p>
+      </div>
+      <div class="section-body"></div>
+    </section>
+  </template>
+
+  <script src="popup.js"></script>
+</body>
+</html>
